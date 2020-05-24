@@ -1,0 +1,171 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="87%" fxFlex.xs="100%" style="border: 1;">
+
+    <mat-card-title fxLayoutAlign="center center">Registered Patient Details</mat-card-title>
+
+    <form [formGroup]="registerForm" autocomplete="off" novalidate>
+
+      <mat-card-content fxLayout="column wrap">
+
+        <div flex fxLayoutGap="30px">
+          <mat-label><b>Patient Name</b></mat-label><br>
+          <mat-form-field>
+            <input matInput type="text" placeholder="FirstName" formControlName="firstName" id="firstName">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="LastName" formControlName="lastName" id="lastName">
+          </mat-form-field>
+        </div>
+        <br>
+        <div flex fxLayoutGap="30px">
+          <mat-label><b>Postal Address</b></mat-label><br>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Line1" formControlName="line1" id="line1">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Line2" formControlName="line2" id="line2">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput type="text" placeholder="City" formControlName="city" id="city">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="State" formControlName="state" id="state">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Zip" formControlName="zip" id="zip">
+          </mat-form-field>
+        </div>
+        <div flex fxLayoutGap="30px">
+          <mat-label>Gender</mat-label>
+          <mat-radio-group formControlName="gender" id="gender">
+            <mat-radio-button *ngFor="let item of genders" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Date of Birth" formControlName="dateOfBirth" id="dateOfBirth">
+          </mat-form-field>
+        </div>
+        <div flex fxLayoutGap="30px">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Email" formControlName="mailId" id="mailId">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="PhoneNo" formControlName="phone" id="phone">
+          </mat-form-field>
+        </div>
+        <div flex fxLayoutGap="30px">
+          <mat-label>Marital Status</mat-label>
+          <mat-radio-group formControlName="maritalStatus" id="maritalStatus">
+            <mat-radio-button *ngFor="let item of marital_status" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="30px">
+          <mat-label>Medical History</mat-label>
+          <ng-container *ngFor="let item of disease_type; let i = index">
+            <mat-checkbox [checked]="item.checked" [value]="item.name" disabled="true">{{item.name}}
+            </mat-checkbox>
+          </ng-container>
+        </div>
+        <br>
+        <div flex fxLayoutGap="30px">
+          <mat-label>Exercise Activity</mat-label>
+          <mat-radio-group formControlName="activity" id="activity">
+            <mat-radio-button *ngFor="let item of excercise_type" [checked]="item.checked"  [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="56px">
+          <mat-label>Tobaco Use</mat-label>
+          <mat-radio-group formControlName="tobacoUse" id="tobacoUse">
+            <mat-radio-button *ngFor="let item of tobaco_use_type" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="56px">
+          <mat-label>Aclohol Use</mat-label>
+          <mat-radio-group formControlName="alchoholUse" id="alchoholUse">
+            <mat-radio-button *ngFor="let item of alchohol_use_type" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="50px">
+          <mat-label>Caffeine Use</mat-label>
+          <mat-radio-group formControlName="caffineUse" id="caffineUse">
+            <mat-radio-button *ngFor="let item of caffine_use_type" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="30px">
+          <mat-label>Do you suffer from any known allergies</mat-label>
+          <mat-radio-group formControlName="allergies" id="allergies">
+            <mat-radio-button *ngFor="let item of alergy_yes_no" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="30px" *ngIf="suffering == true">
+          <mat-label>Causes of allergic</mat-label>
+          <ng-container *ngFor="let item of alergy_type; let i = index">
+            <mat-checkbox [checked]="item.checked" [value]="item.name" disabled="true">{{item.name}}
+            </mat-checkbox>
+          </ng-container>
+        </div>
+        <br *ngIf="suffering == true">
+        <div flex fxLayoutGap="30px">
+          <mat-label>Diet</mat-label>
+          <mat-radio-group formControlName="diet" id="diet">
+            <mat-radio-button *ngFor="let item of diet_type" [checked]="item.checked" [value]="item.value">
+              {{item.option}}
+              &nbsp;
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <br>
+        <div flex fxLayoutGap="30px">
+          <mat-label><b>Patient Height & Weight</b></mat-label><br>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Height in METER" formControlName="height" id="height">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Weight in KG" formControlName="weight" id="weight">
+          </mat-form-field>
+        </div>
+        <div flex fxLayoutGap="30px">
+          <mat-form-field>
+            <input matInput type="text" placeholder="BMI" formControlName="bmi" id="bmi">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions style="text-align: center;">
+        <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+</section>
